@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ZONA CERO — Shooter 3D apocalíptico</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<canvas id="c"></canvas>
+
+<div id="fade"></div>
+
+<!-- ===================== HUD ===================== -->
+<div id="hud" class="hidden">
+  <div id="dmg"></div>
+  <div id="lowhp"></div>
+
+  <div id="crosshair">
+    <i class="n"></i><i class="s"></i><i class="e"></i><i class="w"></i>
+  </div>
+  <div id="hitmarker"><i></i><i></i><i></i><i></i></div>
+
+  <div class="hud-top">
+    <div class="pill"><span class="lbl">OLEADA</span><span id="ui-wave">1</span></div>
+    <div class="pill"><span class="lbl">ENEMIGOS</span><span id="ui-enemies">0</span></div>
+    <div class="pill"><span class="lbl">PUNTOS</span><span id="ui-score">0</span></div>
+  </div>
+
+  <div class="hud-bl">
+    <div class="lbl">INTEGRIDAD</div>
+    <div class="bar-row">
+      <div id="health-bar"><div id="health-fill"></div></div>
+      <div id="hp-num">100</div>
+    </div>
+  </div>
+
+  <div class="hud-br">
+    <div id="ammo"><span id="ui-mag">30</span><span class="sl">/</span><span id="ui-reserve">150</span></div>
+    <div id="reload-note">RECARGANDO…</div>
+    <div id="reload-hint">R · RECARGAR</div>
+  </div>
+
+  <div id="banner" class="hidden"></div>
+</div>
+
+<!-- ===================== PANTALLAS ===================== -->
+<div id="screen-start" class="screen">
+  <div class="panel">
+    <h1>ZONA<span>CERO</span></h1>
+    <p class="tag">SHOOTER 3D APOCALÍPTICO &nbsp;·&nbsp; SOBREVIVE A 3 OLEADAS &nbsp;·&nbsp; THREE.JS</p>
+
+    <div class="controls">
+      <div class="row"><kbd>↑ ↓</kbd><b>Avanzar / Retroceder</b></div>
+      <div class="row"><kbd>← →</kbd><b>Girar la cámara</b></div>
+      <div class="row"><kbd>ESPACIO</kbd><b>Disparar (también con el clic)</b></div>
+      <div class="row"><kbd>SHIFT</kbd><b>Correr</b></div>
+      <div class="row"><kbd>C</kbd><b>Saltar</b></div>
+      <div class="row"><kbd>R</kbd><b>Recargar</b></div>
+      <div class="row"><kbd>P · ESC</kbd><b>Pausa</b></div>
+      <div class="row"><kbd>RATÓN</kbd><b>Apuntar (opcional)</b></div>
+      <div class="row"><kbd>CABEZA</kbd><b>Daño x2.4</b></div>
+      <div class="row"><kbd>OBJETOS BRILLANTES</kbd><b>Salud y munición</b></div>
+    </div>
+
+    <div class="best">RÉCORD PERSONAL · <span id="ui-best">0</span></div>
+    <button id="btn-start" class="btn">▶&nbsp; JUGAR</button>
+    <p class="hint">Se juega 100% con teclas de dirección · el ratón es opcional · P o ESC para pausa</p>
+  </div>
+</div>
+
+<div id="screen-pause" class="screen hidden">
+  <div class="panel small">
+    <h2>PAUSA</h2>
+    <p class="tag">EL COMBATE ESTÁ DETENIDO</p>
+    <button id="btn-resume" class="btn">REANUDAR</button>
+    <button id="btn-quit" class="btn ghost">SALIR AL MENÚ</button>
+    <p class="hint">Si el ratón no se bloquea, espera un segundo y vuelve a pulsar</p>
+  </div>
+</div>
+
+<div id="screen-over" class="screen hidden">
+  <div class="panel small">
+    <h2 class="dead">HAS MUERTO</h2>
+    <div class="stats">
+      <div><span id="st-score">0</span><b>PUNTOS</b></div>
+      <div><span id="st-wave">1</span><b>OLEADA</b></div>
+      <div><span id="st-kills">0</span><b>BAJAS</b></div>
+      <div><span id="st-acc">0%</span><b>PRECISIÓN</b></div>
+    </div>
+    <div class="best">RÉCORD · <span id="st-best">0</span></div>
+    <button id="btn-retry" class="btn">JUGAR OTRA VEZ</button>
+    <button id="btn-menu" class="btn ghost">MENÚ PRINCIPAL</button>
+  </div>
+</div>
+
+<div id="screen-win" class="screen hidden">
+  <div class="panel small">
+    <h2 class="win">¡HAS SOBREVIVIDO!</h2>
+    <p class="tag">3 ZONAS DESPEJADAS · LAS MÁQUINAS HAN CAÍDO · LA HUMANIDAD RESPIRA UN DÍA MÁS</p>
+    <div class="stats">
+      <div><span id="w-score">0</span><b>PUNTOS</b></div>
+      <div><span id="w-wave">3</span><b>OLEADA</b></div>
+      <div><span id="w-kills">0</span><b>BAJAS</b></div>
+      <div><span id="w-acc">0%</span><b>PRECISIÓN</b></div>
+    </div>
+    <div class="best">RÉCORD · <span id="w-best">0</span></div>
+    <button id="btn-again" class="btn">VOLVER A JUGAR</button>
+    <button id="btn-menu2" class="btn ghost">MENÚ PRINCIPAL</button>
+  </div>
+</div>
+
+<script src="lib/three.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
